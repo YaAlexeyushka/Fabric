@@ -1,40 +1,24 @@
 from unittest import TestCase
-from fabric import Fabric
-from keys import keys
+from models.organisation_model import organisation_model
+from models.storage_model import storage_model
+from models.user_model import user_model
 
 
 class Tester(TestCase):
     
-    def check_organisation_model_create():
-        key = keys.organisation_key()
+    
+    def test_check_org_mod(self):
+        model = organisation_model.create()
         
-        fabric = Fabric()
+        assert model is not None
         
-        model = fabric.create(key)
+    def test_check_stor_mod(self):
+        model = storage_model.create()
         
-        organisation_model = model.create("name", "desc", "address", "phone", "email", "website")
+        assert model is not None
         
-        assert organisation_model is not None
+    def test_check_us_mod(self):
+        model = user_model.create()
         
-    def check_storage_model_create():
-        key = keys.storage_key()
-        
-        fabric = Fabric()
-        
-        model = fabric.create(key)
-        
-        storage_model = model.create("name", "desc", "address", 10)
-        
-        assert storage_model is not None
-        
-        
-    def check_user_model_create():
-        key = keys.storage_key()
-        
-        fabric = Fabric()
-        
-        model = fabric.create(key)
-        
-        user_model = model.create("name", "desc", "address", "phone", "mail")
-        
-        assert user_model is not None
+        assert model is not None
+   

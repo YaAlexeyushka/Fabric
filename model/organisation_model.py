@@ -1,22 +1,27 @@
-from abc import ABC
+from model.model import model
 
-class user_model(ABC):
+
+class organisation_model(model):
     __name: str = None
     __description: str = None
     __address: str = None
     __phone: str = None
     __email: str = None
+    __website: str = None 
     
-    def create(self, name=None, description=None, address=None, phone=None, email=None):
-        model = user_model()
-        model.__name = name
-        model.__description = description
-        model.__address = address
-        model.__phone = phone
-        model.__email = email
+    def __init__(self, name=None, description=None, address=None, phone=None, email=None, website=None):
+        self.__name = name
+        self.__description = description
+        self.__address = address
+        self.__phone = phone
+        self.__email = email
+        self.__website = website
+        
+    @staticmethod
+    def create(name="Default", description="Default", address="Default", phone='Default', email='Default', website='Default'):
+        model = organisation_model(name, description, address, phone, email, website)
         
         return model
-    
     
     @property
     def name(self):
@@ -57,3 +62,11 @@ class user_model(ABC):
     @email.setter
     def email(self, value):
         self.__email = value
+
+    @property
+    def website(self):
+        return self.__website
+
+    @website.setter
+    def website(self, value):
+        self.__website = value
